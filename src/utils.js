@@ -51,7 +51,23 @@ export const buildBalancedTeam = (pokemonList) => {
     return bestOfType.sort((a, b) => b.attack - a.attack);
   };
   // 4. Try to pick 3 different types that meet attack requirement
-  // 5. Return empty array if impossible
+  const teambuilder = ATKType(
+    groupTypes((pokemonList) => {
+      const team = [];
+      let totalAttack = 0;
+      pokemonList.forEach((pokemon) => {
+        if (team.length < 3 && !team.find((p) => p.type === pokemon.type)) {
+          team.push(pokemon);
+          totalAttack += pokemon.attack;
+        }
+      });
+      if (team.length === 3 && totalAttack >= 150) {
+        return team;
+      }
+      // 5. Return empty array if impossible
+      return [];
+    })
+  );
   // Helper: Group by type
   // Helper: Find best Pokemon per type (highest HP)
   // Helper: Check if team meets attack requirement
