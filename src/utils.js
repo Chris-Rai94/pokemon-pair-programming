@@ -29,7 +29,7 @@ export const buildBalancedTeam = (pokemonList) => {
   // Strategy hints:
   // 1. Group Pokemon by type
   const groupTypes = (list) => {
-    return list.reduce((acc, pokemon) => {
+    return pokemonList.reduce((acc, pokemon) => {
       if (!acc[pokemon.type]) {
         acc[pokemon.type] = [];
       }
@@ -38,21 +38,20 @@ export const buildBalancedTeam = (pokemonList) => {
     }, {});
   };
   // 2. For each type, pick the one with highest HP
-  const HPType = (filterer) => {
+  const HPType = groupTypes((pokemonList) => {
     const bestOfType = [];
-    for (const type in filterer) {
-      const sortedByHP = filterer[type].sort((a, b) => b.hp - a.hp);
+    for (const type in pokemonList) {
+      const sortedByHP = pokemonList[type].sort((a, b) => b.hp - a.hp);
       bestOfType.push(sortedByHP[0]);
     }
     return bestOfType;
-  };
+  });
   // 3. Sort these "best of type" by attack (highest first)
-  const ATKType = (bestOfType) => {
-    return bestOfType.sort((a, b) => b.attack - a.attack);
-  };
+  const ATKType = groupTypes((HPType) => {
+    return HPType.sort((a, b) => b.attack - a.attack);
+  });
   // 4. Try to pick 3 different types that meet attack requirement
-  const teambuilder = ATKType(
-    groupTypes((pokemonList) => {
+  const teambuilder = groupTypes(ATKType(pokemonList)) => {
       const team = [];
       let totalAttack = 0;
       pokemonList.forEach((pokemon) => {
