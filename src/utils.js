@@ -47,6 +47,9 @@ export const buildBalancedTeam = (pokemonList) => {
     return bestOfType;
   };
   // 3. Sort these "best of type" by attack (highest first)
+  const ATKType = (bestOfType) => {
+    return bestOfType.sort((a, b) => b.attack - a.attack);
+  };
   // 4. Try to pick 3 different types that meet attack requirement
   // 5. Return empty array if impossible
   // Helper: Group by type
