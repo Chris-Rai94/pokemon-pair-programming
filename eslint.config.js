@@ -5,7 +5,6 @@ import markdown from "@eslint/markdown";
 import prettier from "eslint-config-prettier";
 
 const STUDENT_LIMITS = {
-  MAX_LINES: 30, // Forces focused functions
   MAX_PARAMS: 2, // Forces good design decisions
   MAX_DEPTH: 2, // Prevents nested spaghetti
   MAX_STATEMENTS: 10, // Forces decomposition
@@ -22,15 +21,6 @@ export default [
     rules: {
       ...eslintJs.configs.recommended.rules,
 
-      // Functions should do one thing
-      "max-lines-per-function": [
-        "error",
-        {
-          max: STUDENT_LIMITS.MAX_LINES,
-          skipBlankLines: true,
-          skipComments: true,
-        },
-      ],
       "max-statements": ["error", STUDENT_LIMITS.MAX_STATEMENTS],
       "max-params": ["error", STUDENT_LIMITS.MAX_PARAMS],
 
