@@ -55,9 +55,9 @@ describe("filterByType", () => {
 
 describe("getPokemonNames", () => {
   test("should return array of Pokemon names", () => {
-    const EXPECTED_NAMES = ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"];
+    const EXPECTED_ARRAY = ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"];
     const result = getPokemonNames(MOCK_DATA);
-    expect(result).toEqual(EXPECTED_NAMES);
+    expect(result).toEqual(EXPECTED_ARRAY);
   });
 
   // ✅ COMPLETE: This test is done
@@ -75,8 +75,25 @@ describe("getStrongestPokemon", () => {
 });
 
 describe("sortByName", () => {
-  // TODO: Write test to verify Pokemon are sorted alphabetically
-  // TODO: Write test to verify original array is not modified (immutability)
+  test("should sort Pokemon by name alphabetically", () => {
+    const INPUT = [
+      { name: "Squirtle" },
+      { name: "Bulbasaur" },
+      { name: "Charmander" },
+      { name: "Pikachu" },
+    ];
+    const originalInput = [...INPUT];
+    const expectedOrder = [
+      { name: "Bulbasaur" },
+      { name: "Charmander" },
+      { name: "Pikachu" },
+      { name: "Squirtle" },
+    ];
+
+    const result = sortByName(INPUT);
+    expect(result).toEqual(expectedOrder);
+    expect(INPUT).toEqual(originalInput); // Verify original array is not modified
+  });
 });
 
 describe("calculateAverageHP", () => {
