@@ -19,7 +19,6 @@ export const getStrongestPokemon = (pokemonList) => {
 };
 
 export const sortByName = (pokemonList) => {
-  // TODO: Implement this function
   return structuredClone(pokemonList).sort((a, b) =>
     a.name.localeCompare(b.name)
   );

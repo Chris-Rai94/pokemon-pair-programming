@@ -82,7 +82,7 @@ describe("sortByName", () => {
       { name: "Charmander" },
       { name: "Pikachu" },
     ];
-    const originalInput = structuredClone(INPUT); // To verify immutability
+    const originalInput = structuredClone(INPUT); // To verify immutability using structuredClone
     const expectedOrder = [
       { name: "Bulbasaur" },
       { name: "Charmander" },
