@@ -55,8 +55,9 @@ describe("filterByType", () => {
 
 describe("getPokemonNames", () => {
   test("should return array of Pokemon names", () => {
+    const EXPECTED_NAMES = ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"];
     const result = getPokemonNames(MOCK_DATA);
-    expect(result).toEqual(["Bulbasaur", "Charmander", "Squirtle", "Pikachu"]);
+    expect(result).toEqual(EXPECTED_NAMES);
   });
 
   // ✅ COMPLETE: This test is done
