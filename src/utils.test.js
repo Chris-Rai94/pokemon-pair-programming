@@ -68,9 +68,22 @@ describe("getPokemonNames", () => {
 });
 
 describe("getStrongestPokemon", () => {
-  test("should return Pokemon with highest attack", () => {
-    const result = getStrongestPokemon(MOCK_DATA);
-    expect(result.name).toBe("Pikachu"); // Pikachu has 55 attack
+  test("should return all pokemon that have the highest attack when there is a tie", () => {
+    // Arrange
+    const tieData = [
+      { name: "Pikachu", attack: 55 },
+      { name: "Raichu", attack: 55 },
+      { name: "Bulbasaur", attack: 49 },
+      { name: "Charmander", attack: 52 },
+    ];
+    const expectedOutput = [
+      { name: "Pikachu", attack: 55 },
+      { name: "Raichu", attack: 55 },
+    ];
+    // Act
+    const result = getStrongestPokemon(tieData);
+    // Assert
+    expect(result).toEqual(expectedOutput);
   });
 });
 
